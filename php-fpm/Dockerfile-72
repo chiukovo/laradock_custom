@@ -38,20 +38,36 @@ LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
 #   - INSTALL_ZIP_ARCHIVE=true
 #
 
+###########################################################################
+# WKHTMLTOPDF:
+###########################################################################
 
+ USER root
 
-ARG INSTALL_TIDY=true
+ ARG INSTALL_WKHTMLTOPDF=false
+
+ RUN if [ ${INSTALL_WKHTMLTOPDF} = true ]; then \
+    apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y xvfb libfontconfig wkhtmltopdf \
+;fi
+
+#####################################
+# TIDY:
+#####################################
+
+ARG INSTALL_TIDY=false
 RUN if [ ${INSTALL_TIDY} = true ]; then \
-    RUN apt-get update
-    RUN apt-get upgrade -y
-    RUN apt-get install -y apt-utils
-    RUN apt-get install -y libzip-dev
-    RUN apt-get install -y libtidy-dev
-    RUN apt-get install -y curl
-    RUN apt-get install -y libcurl3
-    RUN apt-get install -y libcurl3-dev
-    RUN docker-php-ext-install tidy
-    RUN docker-php-ext-enable tidy
+    apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y apt-utils && \
+    apt-get install -y libzip-dev && \
+    apt-get install -y libtidy-dev && \
+    apt-get install -y curl && \
+    apt-get install -y libcurl3 && \
+    apt-get install -y libcurl3-dev && \
+    docker-php-ext-install tidy && \
+    docker-php-ext-enable tidy \
 ;fi
 
 #####################################

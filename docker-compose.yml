@@ -106,6 +106,7 @@ services:
           - INSTALL_IMAGE_OPTIMIZERS=${PHP_FPM_INSTALL_IMAGE_OPTIMIZERS}
           - INSTALL_IMAGEMAGICK=${PHP_FPM_INSTALL_IMAGEMAGICK}
           - INSTALL_TIDY=${PHP_FPM_INSTALL_TIDY}
+          - INSTALL_WKHTMLTOPDF=${PHP_FPM_INSTALL_WKHTMLTOPDF}
         dockerfile: "Dockerfile-${PHP_VERSION}"
       volumes_from:
         - applications

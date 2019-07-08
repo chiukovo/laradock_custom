@@ -72,7 +72,12 @@ RUN if [ ${INSTALL_SOAP} = true ]; then \
   apt-get -y install libxml2-dev php7.2-soap \
 ;fi
 
-ARG INSTALL_TIDY=true
+
+#####################################
+# TIDY:
+#####################################
+
+ARG INSTALL_TIDY=false
 ENV INSTALL_TIDY ${INSTALL_TIDY}
 RUN if [ ${INSTALL_TIDY} = true ]; then \
     apt-get update -yqq && \
