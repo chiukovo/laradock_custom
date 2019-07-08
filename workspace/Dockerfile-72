@@ -516,6 +516,22 @@ RUN if [ ${INSTALL_PRESTISSIMO} = true ]; then \
     composer global require "hirak/prestissimo" \
 ;fi
 
+
+#####################################
+# Lumen Installer:
+#####################################
+USER root
+
+ARG INSTALL_LUMEN=false
+ENV INSTALL_LUMEN ${INSTALL_LUMEN}
+
+RUN if [ ${INSTALL_LUMEN} = true ]; then \
+    # Install the Lumen
+    echo "" >> ~/.bashrc && \
+    echo 'export PATH="~/.composer/vendor/bin:$PATH"' >> ~/.bashrc \
+    && composer global require "laravel/lumen-installer" \
+;fi
+
 #####################################
 # Linuxbrew:
 #####################################
