@@ -98,6 +98,8 @@ WORKSPACE_NODE_VERSION=stable
 WORKSPACE_YARN_VERSION=latest
 WORKSPACE_TIMEZONE=Asia/Taipei
 WORKSPACE_SSH_PORT=2222
+WORKSPACE_GIT_CONFIG_NAME=example
+WORKSPACE_GIT_CONFIG_EMAIL=example@mail.com
 
 ### PHP_FPM ############################################################################################################
 

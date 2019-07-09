@@ -29,7 +29,6 @@ RUN rm /var/log/lastlog /var/log/faillog
 # to add more Software's or remove existing one, you need to edit the
 # base image (https://github.com/Laradock/workspace).
 #
-
 #
 #--------------------------------------------------------------------------
 # Optional Software's Installation
@@ -649,10 +648,12 @@ RUN if [ ${INSTALL_SYMFONY} = true ]; then \
 #####################################
 
 ARG INSTALL_PYTHON=false
-ENV INSTALL_PYTHON ${INSTALL_PYTHON}
+
 RUN if [ ${INSTALL_PYTHON} = true ]; then \
-  apt-get -y install python python-pip python-dev build-essential  \
-  && pip install --upgrade pip==9.0.3  \
+  apt-get update -yqq \
+  && apt-get -y install python python-pip python-dev build-essential  \
+  && pip install --upgrade pip  \
+  && hash -r pip \
   && pip install --upgrade virtualenv \
 ;fi
 
@@ -738,3 +739,12 @@ RUN apt-get clean && \
 
 # Set default work directory
 WORKDIR /var/www
+
+ARG GIT_CONFIG_NAME=example
+ENV GIT_CONFIG_NAME ${GIT_CONFIG_NAME}
+
+ARG GIT_CONFIG_EMAIL=example@mail.com
+ENV GIT_CONFIG_EMAIL ${GIT_CONFIG_EMAIL}
+
+RUN git config --global user.email ${GIT_CONFIG_EMAIL}
+RUN git config --global user.name ${GIT_CONFIG_NAME}
