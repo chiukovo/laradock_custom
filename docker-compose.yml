@@ -73,6 +73,7 @@ services:
       tty: true
       environment:
         - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
+        - CHOKIDAR_USEPOLLING=true
       networks:
         - frontend
         - backend
